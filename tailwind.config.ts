@@ -6,12 +6,15 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        CustomAntiqueWhite: '#FAEBD7',
+        CustomSepia: '#704214',
+        CustomOldGold: '#CFB53B',
+        CustomCharcoal: '#36454F',
+        CustomTerracotta: '#E2725B',
       },
     },
   },
