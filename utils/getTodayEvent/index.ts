@@ -1,0 +1,2 @@
+export {getTodayEvent} from './getTodayEvent'
+

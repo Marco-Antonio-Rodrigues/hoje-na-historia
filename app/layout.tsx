@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/global/Footer";
 import Header from "@/components/global/Header";
+import ReactQueryClientProvider from "@/context/ReactQueryClientProvider";
 
 const outfit = Outfit({subsets: ["latin"]});
 export const metadata: Metadata = {
@@ -17,11 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${outfit.className} flex flex-col min-h-screen justify-between bg-CustomAntiqueWhite dark:bg-CustomCharcoal transition-colors duration-1000`}>
-        <Header/>
-        {children}
-        <Footer/>
-      </body>
-    </html>
+        <body className={`${outfit.className} flex flex-col min-h-screen justify-between bg-CustomAntiqueWhite dark:bg-CustomCharcoal transition-colors duration-1000`}>
+          <ReactQueryClientProvider>
+            <Header/>
+            {children}
+            <Footer/>
+          </ReactQueryClientProvider>
+        </body>
+      </html>
   );
 }

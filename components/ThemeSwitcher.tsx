@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { IconThemeDark, IconThemeLight } from "./Icon"
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = () => {    
     const [theme, setTheme] = useState('light');
-
 
     useEffect(() => {
       const savedTheme = localStorage.getItem('theme');
