@@ -1,4 +1,4 @@
-import { getTodayEvent } from './path-to-your-function';
+import { getTodayEvent } from '../getTodayEvent';
 import { HistoricalEvents } from '@/types/historicalEvents';
 
 describe('getTodayEvent', () => {

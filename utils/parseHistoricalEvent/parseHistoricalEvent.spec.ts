@@ -1,4 +1,4 @@
-import { parseHistoricalEvent } from './path-to-your-function';
+import { parseHistoricalEvent } from './parseHistoricalEvent'
 
 describe('parseHistoricalEvent', () => {
     test('should parse a valid historical event string', () => {

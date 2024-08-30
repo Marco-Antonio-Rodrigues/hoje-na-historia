@@ -18,13 +18,23 @@ export function parseHistoricalEvent(eventString:string):{date: Date, phrase:str
 
     const datePattern = /\[([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})\]/;
     const dateMatch = eventString.match(datePattern);
-    console.log(dateMatch)
+
     if (dateMatch) {
         const day = parseInt(dateMatch[1], 10);
         const month = parseInt(dateMatch[2], 10) - 1; // Mês é indexado a partir de 0 em JavaScript
         const year = parseInt(dateMatch[3], 10);
+        
+        // Validação básica do formato da data
+        if (day < 1 || day > 31 || month < 0 || month > 11 || year < 1) {
+            throw new Error("Invalid event string format");
+        }
 
+        // Verifica se a data é válida usando o objeto Date
         const eventDate = new Date(year, month, day);
+        if (eventDate.getDate() !== day || eventDate.getMonth() !== month || eventDate.getFullYear() !== year) {
+            throw new Error("Invalid event string format");
+        }
+
         // Extraindo a frase após o símbolo "•"
         const eventPhrase = eventString.split('•')[1].trim();
 

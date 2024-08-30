@@ -20,7 +20,6 @@ export function getTodayEvent(historicalEvents:HistoricalEvents) {
 
     const today = new Date();
     const dateKey = `${today.getMonth()+ 1}-${today.getDate()}`;
-    console.log(dateKey)
 
     if (historicalEvents.hasOwnProperty(dateKey)) {
         const events = historicalEvents[dateKey];
