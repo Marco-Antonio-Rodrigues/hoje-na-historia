@@ -2,7 +2,7 @@ import { getTodayEvent } from '../getTodayEvent';
 import { HistoricalEvents } from '@/types/historicalEvents';
 
 describe('getTodayEvent', () => {
-    test('should return a historical event for today\'s date', () => {
+    test('should return all historical events for today\'s date', () => {
         const today = new Date();
         const dateKey = `${today.getMonth() + 1}-${today.getDate()}`;
         
@@ -13,17 +13,17 @@ describe('getTodayEvent', () => {
             ]
         };
         
-        const event = getTodayEvent(historicalEvents);
-        expect(historicalEvents[dateKey]).toContain(event);
+        const events = getTodayEvent(historicalEvents);
+        expect(events).toEqual(historicalEvents[dateKey]);
     });
 
-    test('should return a message if no historical event is found for today', () => {
+    test('should return an empty array if no historical event is found for today', () => {
         const historicalEvents: HistoricalEvents = {
             "8-15": ["<b>[8/15/1945]</b> • Event 1"]
         };
         
-        const event = getTodayEvent(historicalEvents);
-        expect(event).toBe("No historical event found for today.");
+        const events = getTodayEvent(historicalEvents);
+        expect(events).toEqual(["No historical event found for today."]);
     });
 
     test('should handle leap year dates correctly', () => {
@@ -36,15 +36,15 @@ describe('getTodayEvent', () => {
         const isFeb29 = today.getMonth() + 1 === 2 && today.getDate() === 29;
 
         if (isLeapYear && isFeb29) {
-            const event = getTodayEvent(historicalEvents);
-            expect(event).toBe("<b>[2/29/2020]</b> • Leap Year Event");
+            const events = getTodayEvent(historicalEvents);
+            expect(events).toEqual(historicalEvents["2-29"]);
         } else {
-            const event = getTodayEvent(historicalEvents);
-            expect(event).toBe("No historical event found for today.");
+            const events = getTodayEvent(historicalEvents);
+            expect(events).toEqual(["No historical event found for today."]);
         }
     });
 
-    test('should randomly select an event if multiple events are available', () => {
+    test('should return all events if multiple events are available for today\'s date', () => {
         const today = new Date();
         const dateKey = `${today.getMonth() + 1}-${today.getDate()}`;
 
@@ -56,7 +56,7 @@ describe('getTodayEvent', () => {
             ]
         };
 
-        const event = getTodayEvent(historicalEvents);
-        expect(historicalEvents[dateKey]).toContain(event);
+        const events = getTodayEvent(historicalEvents);
+        expect(events).toEqual(historicalEvents[dateKey]);
     });
 });
