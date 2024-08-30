@@ -7,6 +7,13 @@ import { useQuery } from "react-query";
 import { getTodayEvent } from "@/utils/getTodayEvent";
 import { formatDateToBrazilianFormat } from "@/utils/formatDateToBrazilianFormat";
 import { parseHistoricalEvent } from "@/utils/parseHistoricalEvent";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const Phrase = () => {
     const PhraseQuery = useQuery('phrase', eventHistoricService.getPhases);
@@ -34,9 +41,23 @@ const Phrase = () => {
               <span className="w-full text-center text-lg lg:text-xl font-semibold">{dateFormatBrazil}</span>
               <div className="flex gap-1">
                 <IconQuoteLeft className="text-3xl lg:text-4xl flex-shrink-0"/>
-                <p className="text-sm lg:text-base">
-                  {phraseFromToday}
-                </p>
+                <Carousel
+                  opts={{
+                    align: "start",
+                  }}
+                  orientation="vertical"
+                  className="w-full max-w-xs"
+                >
+                  <CarouselContent className="-mt-1 h-[200px]">
+                    {Array.from({ length: 1 }).map((_, index) => (
+                      <CarouselItem key={index} className="pt-1 md:basis-1/2">
+                        <div className="p-1">
+                          {phraseFromToday}
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
               </div>
             </>      
           }
