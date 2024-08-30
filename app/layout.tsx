@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/global/Footer";
 import Header from "@/components/global/Header";
 import ReactQueryClientProvider from "@/context/ReactQueryClientProvider";
+import { Analytics } from '@vercel/analytics/react';
 
 const outfit = Outfit({subsets: ["latin"]});
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({
             {children}
             <Footer/>
           </ReactQueryClientProvider>
+          <Analytics />
         </body>
       </html>
   );
