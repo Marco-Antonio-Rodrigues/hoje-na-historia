@@ -16,7 +16,7 @@ import { HistoricalEvents } from '@/types/historicalEvents';
  * console.log(event); // Outputs a random event for today's date or "No historical event found for today."
  * ```
  */
-export function getTodayEvent(historicalEvents:HistoricalEvents) {
+export function getTodayEvent(historicalEvents:HistoricalEvents):string[] {
 
     const today = new Date();
     const dateKey = `${today.getMonth()+ 1}-${today.getDate()}`;
@@ -24,8 +24,8 @@ export function getTodayEvent(historicalEvents:HistoricalEvents) {
     if (historicalEvents.hasOwnProperty(dateKey)) {
         const events = historicalEvents[dateKey];
 
-        return events[Math.floor(Math.random() * events.length)];
+        return events;
     } else {
-        return "No historical event found for today.";
+        return ["No historical event found for today."];
     }
 }
